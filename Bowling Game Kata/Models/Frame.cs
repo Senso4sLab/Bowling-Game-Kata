@@ -7,19 +7,16 @@ namespace Bowling_Game_Kata
 {
     public class Frame
     {
-        static int counter = 0;
-        public List<int> PinsKnocked { get; set; } = new List<int>();       
+        public List<int> PinsKnocked { get; set; }
+
+        public Frame PreviousFrame { get; set; }
+
         public bool IsSpare
         {
             get
             {
-                if(PinsKnocked.Count == 2)
-                {
-                    if (PinsKnocked.Sum() == 10)                    
-                        return true;                    
-                    else
-                        return false;
-                }
+                if (PinsKnocked.Count == 2 && PinsKnocked.Sum() == 10)
+                    return true;
                 return false;
             }
         }
@@ -33,15 +30,18 @@ namespace Bowling_Game_Kata
                     return false;              
             }
         }
-        public int Id { get; set; }
+
+        public bool IsLastFrame { get; set; }
+        
+
+        
         public bool IsFrameCompleted { get; set; }    
         public int Score { get; set; }
         public int BonusScore { get; set; }
 
         public Frame()
         {
-            counter++;
-            Id = counter;
+            PinsKnocked = new List<int>();
         }
 
     }
